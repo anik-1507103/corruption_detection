@@ -27,17 +27,23 @@
     <!-- The Tour Section -->
     <div class="w3-grey" id="tour">
         <div class="w3-container w3-content w3-padding-64" style="max-width:500px">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <p>
+                {% for message in messages %}
+                  {{ message }}
+                {% endfor %}
+                </p>
+              {% endif %}
+            {% endwith %}
             <div class="w3-white w3-row-padding w3-padding-32 w3-round-large" style="margin:0 -16px">
+               
                 <div class="w3-third w3-margin-bottom">
                     <div class="w3-container w3-white">
+
                         <div id="formContent">
                             <form method="POST">
-                                {% with messages = get_flashed_messages() %}
-                                  {% if messages %}
-                                    <p>  {{ messages }} </p>
-                                    
-                                  {% endif %}
-                                {% endwith %}
+                                
                                 <input type="text" id="login" class="w3-input  w3-margin-bottom" style="width: 230px" name="username" placeholder="email">
                                 <input type="password" id="password" name="password" class="w3-input  w3-margin-bottom" style="width: 230px" name="login" placeholder="password">
                                 <button type="submit" name="btn" value="submit" class="w3-button w3-black w3-margin-bottom">Sign in</button>
