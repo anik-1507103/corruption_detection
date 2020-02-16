@@ -34,7 +34,7 @@
                             <form method="POST">
                                 {% with messages = get_flashed_messages() %}
                                   {% if messages %}
-                                    <p>  {{ message }} </p>
+                                    <p>  {{ messages }} </p>
                                     
                                   {% endif %}
                                 {% endwith %}
