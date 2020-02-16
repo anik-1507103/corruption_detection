@@ -34,11 +34,8 @@
                             <form method="POST">
                                 {% with messages = get_flashed_messages() %}
                                   {% if messages %}
-                                    <ul class=flashes>
-                                    {% for message in messages %}
-                                      <li>{{ message }}</li>
-                                    {% endfor %}
-                                    </ul>
+                                    <p>  {{ message }} </p>
+                                    
                                   {% endif %}
                                 {% endwith %}
                                 <input type="text" id="login" class="w3-input  w3-margin-bottom" style="width: 230px" name="username" placeholder="email">
