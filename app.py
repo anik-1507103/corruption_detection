@@ -463,7 +463,7 @@ def login():
           return render_template('login.html')
       login_user(user)
       flash("Logged in successfully")
-      if(username=='admin'):
+      if(username=='admin@sys.com'):
       	return redirect(url_for('admin_panel'))
       else:
       	return redirect(url_for('orglist'))
