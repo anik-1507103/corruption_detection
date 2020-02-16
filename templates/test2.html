@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Performance</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {font-family: "Lato", sans-serif}
+</style>
+
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <form method="POST">
+                <input class="w3-bar-item w3-button w3-padding-large w3-hide-small" type="submit" name="btn" value="ADMIN PANEL">
+                <input class="w3-bar-item w3-button w3-padding-large w3-hide-small" type="submit" name="btn" value="LOG OUT">
+            </form>
+        </div>
+    </div>
+    <div class="w3-container w3-content w3-center " style="max-width:800px; margin-top:40px;" id="band">
+        <h2 class="w3-wide">Clustering Performance Evalutation</h2>
+    </div>
+    <div class=" w3-center  ">
+        <p>Plot Figure Based on Different Clustering Algorithm</p>
+        <h2 class="w3-wide">K-Means</h2>
+        <img src=" {{ img1 }} ">
+        <img src=" {{ img2 }} ">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="w3-wide">K-Mediod</h2>
+        <img src=" {{ img3 }} ">
+        <img src=" {{ img4 }} ">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="w3-wide">Spectral Clustering</h2>
+        <img src=" {{ img5 }} ">
+        <img src=" {{ img6 }} ">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+ 	<br>
+    <div class="w3-container w3-content w3-center " style="max-width:800px; margin-top:40px;" id="band">
+        <h2 class="w3-wide">Clustering Performance Measures</h2>
+        <p>We Define Diffrerent Clustering Performance Measure Values</p>
+    </div>
+    <div class="w3-center w3-container w3-content">
+        <table class="w3-table-all">
+            <tr>
+                <th>Measure Parameter</th>
+                <th>K-Means</th>
+                <th>K-Mediod</th>
+                <th>Spectral</th>
+            </tr>
+            <tr>
+                <td>Silhouette Coefficient Index</td>
+                <td> {{ measure['0'] }}</td>
+                <td> {{ measure['3'] }}</td>
+                <td> {{ measure['6'] }}</td>
+            </tr>
+            <tr>
+                <td>Calinski-Harabasz Index</td>
+                <td> {{ measure['1'] }}</td>
+                <td> {{ measure['4'] }}</td>
+                <td> {{ measure['7'] }}</td>
+            </tr>
+            <tr>
+                <td>Davies-Bouldin Index</td>
+                <td> {{ measure['2'] }}</td>
+                <td> {{ measure['5'] }}</td>
+                <td> {{ measure['8'] }}</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <br>
+</body>

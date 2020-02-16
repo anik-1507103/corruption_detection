@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Organization List</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {font-family: "Lato", sans-serif}
+</style>
+
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <form method="POST">
+                <input class="w3-bar-item w3-button w3-padding-large w3-hide-small" type="submit" name="btn" value="EXPLORE">
+                <input class="w3-bar-item w3-button w3-padding-large w3-hide-small" type="submit" name="btn" value="LOG OUT">
+            </form>
+        </div>
+    </div>
+    <div class="w3-container w3-content w3-center " style="max-width:800px; margin-top:40px;" id="band">
+        <h2 class="w3-wide">{{orgname}}, {{div}}</h2>
+        <h2 class="w3-wide">GIVE YOUR FEEDBACK</h2>
+        <p class="w3-opacity"><i>Select your options according to your experience</i></p>
+    </div>
+    <div class="w3-grey" id="tour">
+        <div class="w3-container w3-content w3-padding-64" style="max-width:650px">
+            <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+                
+                   
+                    <div class="  w3-margin-bottom">
+                        <div class="w3-container w3-white w3-padding-64" >
+                        <form method="POST">	
+                            <p><b>1. {{questions['1']}}</b></p>
+                            <input type="radio" name="q1" value="1" required> Very Bad<br>
+                            <input type="radio" name="q1" value="2"> Bad<br>
+                            <input type="radio" name="q1" value="3"> Mediocore<br>
+                            <input type="radio" name="q1" value="4"> Good<br>
+                            <input type="radio" name="q1" value="5"> Very Good<br>
+                            <br>
+                            <p><b>2. {{questions['2']}}</b></p>
+                            <input type="radio" name="q2" value="1" required> Very Bad<br>
+                            <input type="radio" name="q2" value="2"> Bad<br>
+                            <input type="radio" name="q2" value="3"> Mediocore<br>
+                            <input type="radio" name="q2" value="4"> Good<br>
+                            <input type="radio" name="q2" value="5"> Very Good<br>
+                            <br>
+                            <p><b>3. {{questions['3']}}</b></p>
+                            <input type="radio" name="q3" value="1" required > Very Bad<br>
+                            <input type="radio" name="q3" value="2"> Bad<br>
+                            <input type="radio" name="q3" value="3"> Mediocore<br>
+                            <input type="radio" name="q3" value="4"> Good<br>
+                            <input type="radio" name="q3" value="5"> Very Good<br>
+                            <br>
+                            <p><b>4. {{questions['4']}}</b></p>
+                            <input type="radio" name="q4" value="1" required> Very Bad<br>
+                            <input type="radio" name="q4" value="2"> Bad<br>
+                            <input type="radio" name="q4" value="3"> Mediocore<br>
+                            <input type="radio" name="q4" value="4"> Good<br>
+                            <input type="radio" name="q4" value="5"> Very Good<br>
+                            <br>
+                            <p><b>5. {{questions['5']}}</b></p>
+                            <input type="radio" name="q5" value="1" required> Very Bad<br>
+                            <input type="radio" name="q5" value="2"> Bad<br>
+                            <input type="radio" name="q5" value="3"> Mediocore<br>
+                            <input type="radio" name="q5" value="4"> Good<br>
+                            <input type="radio" name="q5" value="5"> Very Good<br>
+                            <br>
+   
+                                                  
+                            <input type="submit" class="w3-button w3-black" name="btn" value="Submit">
+                        </form>
+
+                            
+                        </div>
+                    </div>
+                    
+                    
+                
+            </div>
+        </div>
+    </div>
+</body>
