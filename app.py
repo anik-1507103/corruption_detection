@@ -96,8 +96,8 @@ def test():
  for x in f:
   y = x.split(",")
   data = Dataset(uid=int(y[0]), orgid=int(y[1]), q1=float(y[2]), q2=float(y[3]), q3=float(y[4]),q4=float(y[5]),q5=float(y[6]) )
- # db.session.add(data)
- # db.session.commit()
+  db.session.add(data)
+  db.session.commit()
  f.close()
  return "hell"
 
@@ -469,7 +469,7 @@ def login():
       	return redirect(url_for('orglist'))
 
   if g.user is not None and g.user.is_authenticated:
-   if(g.user.username == 'admin'):
+   if(g.user.username == 'admin@sys.com'):
     return redirect(url_for('admin_panel'))
    else:
    	return redirect(url_for('orglist'))
