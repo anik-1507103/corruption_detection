@@ -373,7 +373,7 @@ def response():
 @app.route('/admin_panel', methods=['GET', 'POST'])
 @login_required
 def admin_panel():
- return "This is admin_panel"
+ return render_template('admin_panel.html')
 
 
 @app.route('/result', methods=['GET', 'POST'])
