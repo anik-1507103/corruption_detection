@@ -464,7 +464,7 @@ def quespage(ins,orgname, orgid):
    q4=request.form['q4']
    q5=request.form['q5']
    tok=request.form['tok']
-   token = Token.query.filter(Token.uid==g.user.id, Token.tok=tok).first()
+   token = Token.query.filter(Token.uid==g.user.id,Token.tok==tok).first()
    if token is None or token.check==1:
     return redirect(url_for('badresponse')) 
    else:
