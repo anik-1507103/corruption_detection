@@ -62,6 +62,13 @@ class Res(db.Model):
  q4=db.Column(db.Float(8))
  q5=db.Column(db.Float(8))
 
+class Token(db.Model):
+ id = db.Column(db.Integer, primary_key = True)
+ uid = db.Column(db.Integer)
+ tok= db.Column(db.Integer)
+ check = db.Column(db.Integer)
+
+
 class Dataset(db.Model):
  id = db.Column(db.Integer, primary_key = True)
  uid = db.Column(db.Integer)
@@ -134,6 +141,20 @@ def test4():
   db.session.commit()
  f.close()
  return "hell4"
+
+@app.route('/test5', methods=['GET', 'POST'])
+def test5():
+ APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
+ APP_STATIC = os.path.join(APP_ROOT, 'static')
+ f = open(os.path.join(APP_STATIC, 'token.csv'), "r")
+ f.readline()
+ for x in f:
+  y = x.split(",")
+  token = Token(uid=int(y[0]), tok=int(y[1]), check=float(y[2]) )
+  db.session.add(token)
+  db.session.commit()
+ f.close()
+ return "hell5"
 
 
 
@@ -369,6 +390,19 @@ def response():
    return redirect(url_for('index'))
  return render_template('response.html')
 
+@app.route('/badresponse', methods=['GET', 'POST'])
+@login_required
+def badresponse():
+ if request.method == 'POST':
+  if request.form['btn'] == 'EXPLORE':
+   return redirect(url_for('orglist'))
+  if request.form['btn'] == 'LOG OUT':
+   logout_user()
+   return redirect(url_for('index'))
+ return render_template('badresponse.html')
+
+
+
 
 @app.route('/admin_panel', methods=['GET', 'POST'])
 @login_required
@@ -429,10 +463,17 @@ def quespage(ins,orgname, orgid):
    q3=request.form['q3']
    q4=request.form['q4']
    q5=request.form['q5']
-   dataset = Dataset(uid=uid,orgid=orgid,q1=q1, q2=q2, q3=q3,q4=q4,q5=q5)
-   db.session.add(dataset)
-   db.session.commit()
-   return redirect(url_for('response'))	
+   tok=request.form['tok']
+   token = Token.query.filter(Token.uid==g.user.id, Token.tok=tok).first()
+   if token is None or token.check==1:
+    return redirect(url_for('badresponse')) 
+   else:
+    session.query(Token).filter(Token.uid==g.user.id, Token.tok=tok).update({Token.check: 1})
+    session.commit() 
+    dataset = Dataset(uid=uid,orgid=orgid,q1=q1, q2=q2, q3=q3,q4=q4,q5=q5)
+    db.session.add(dataset)
+    db.session.commit()
+    return redirect(url_for('response'))	
  questions={}
  ques=Ques.query.filter(Ques.ins==ins, Ques.orgname==orgname,Ques.id==orgid).first()
  questions['1']=ques.q1
