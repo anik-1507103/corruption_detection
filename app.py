@@ -468,7 +468,7 @@ def quespage(ins,orgname, orgid):
    if token is None or token.check==1:
     return redirect(url_for('badresponse')) 
    else:
-    session.query(Token).filter(Token.uid==g.user.id, Token.tok=tok).update({Token.check: 1})
+    session.query(Token).filter(Token.uid==g.user.id, Token.tok==tok).update({Token.check: 1})
     session.commit() 
     dataset = Dataset(uid=uid,orgid=orgid,q1=q1, q2=q2, q3=q3,q4=q4,q5=q5)
     db.session.add(dataset)
