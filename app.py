@@ -146,7 +146,7 @@ def test4():
 def test5():
  APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
  APP_STATIC = os.path.join(APP_ROOT, 'static')
- f = open(os.path.join(APP_STATIC, 'token2.csv'), "r")
+ f = open(os.path.join(APP_STATIC, 'token.csv'), "r")
  f.readline()
  for x in f:
   y = x.split(",")
