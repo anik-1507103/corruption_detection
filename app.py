@@ -146,7 +146,7 @@ def test4():
 def test5():
  APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
  APP_STATIC = os.path.join(APP_ROOT, 'static')
- f = open(os.path.join(APP_STATIC, 'token.csv'), "r")
+ f = open(os.path.join(APP_STATIC, 'token2.csv'), "r")
  f.readline()
  for x in f:
   y = x.split(",")
@@ -173,6 +173,14 @@ def test2():
  df=df.drop('id',axis=1)
  df=df.drop('uid',axis=1)
  df=df.groupby(['orgid']).mean()
+ dft=df
+ dft['orgid']=df.index.values
+ dft=dft.drop('q1',axis=1)
+ dft=dft.drop('q2',axis=1)
+ dft=dft.drop('q3',axis=1)
+ dft=dft.drop('q4',axis=1)
+ dft=dft.drop('q5',axis=1)
+ 
  from sklearn import preprocessing
  minmax_processed = preprocessing.MinMaxScaler().fit_transform(df)
  df_numeric_scaled = pd.DataFrame(minmax_processed, index=df.index, columns=df.columns)
@@ -181,6 +189,7 @@ def test2():
 
  df2=df
  df['cluster'] = kmeans.labels_
+ dft['kmeans']=kmeans.labels_
  measure={}
  measure['0']=metrics.silhouette_score(df_numeric_scaled,df['cluster'], metric='euclidean')
  measure['1']=metrics.calinski_harabasz_score(df_numeric_scaled, df['cluster'])
@@ -251,6 +260,7 @@ def test2():
  kmedoids = KMedoids(n_clusters=3).fit(df_numeric_scaled)
  df=df2
  df['cluster'] = kmedoids.labels_
+ dft['kmedoids']=kmedoids.labels_
  measure['3']=metrics.silhouette_score(df_numeric_scaled,df['cluster'], metric='euclidean')
  measure['4']=metrics.calinski_harabasz_score(df_numeric_scaled, df['cluster'])
  measure['5']=davies_bouldin_score(df_numeric_scaled, df['cluster'])
@@ -307,6 +317,7 @@ def test2():
  kmedoids = SpectralClustering(n_clusters=3).fit(df_numeric_scaled)
  df=df2
  df['cluster'] = kmedoids.labels_
+ dft['spectral']=kmedoids.labels_
  #measure db< better separation between , cl> better defined  clsuters,
  # sill >, distance between ppints of two clusters
  
@@ -407,6 +418,12 @@ def badresponse():
 @app.route('/admin_panel', methods=['GET', 'POST'])
 @login_required
 def admin_panel():
+ if request.method == 'POST':
+  if request.form['btn'] == 'EXPLORE':
+   return redirect(url_for('orglist'))
+  if request.form['btn'] == 'LOG OUT':
+   logout_user()
+   return redirect(url_for('index'))
  return render_template('admin_panel.html')
 
 
